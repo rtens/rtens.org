@@ -1,2 +1,4 @@
 /.idea
 /sources
+.sass-cache
+*.map
