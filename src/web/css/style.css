@@ -356,8 +356,7 @@ input[type="radio"] + label:before {
   display: inline-block;
   margin: 0 0 1.125em 0;
   padding: 0.35em 0 0 2.52em;
-  position: relative;
-  width: 48%; }
+  position: relative; }
   .feature-icon:before {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
@@ -437,12 +436,12 @@ ul {
     list-style: none;
     padding-left: 0; }
     ul.feature-icons li {
+      width: 48%;
       text-decoration: none;
       display: inline-block;
       margin: 0 0 1.125em 0;
       padding: 0.35em 0 0 3.5em;
-      position: relative;
-      width: 48%; }
+      position: relative; }
       ul.feature-icons li:before {
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
