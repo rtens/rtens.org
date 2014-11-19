@@ -34,14 +34,16 @@ header.major h2 {
     font-size: 1.5em; }
 
 /* Features */
-.features article .image {
-  display: block;
-  margin: 0 0 2.25em 0;
-  padding-right: 0;
-  width: 100%; }
-.features article .inner {
-  display: block;
-  width: 100%; }
+.features {
+  margin-left: 0; }
+  .features article .image {
+    display: block;
+    margin: 0 0 2.25em 0;
+    padding-right: 0;
+    width: 100%; }
+  .features article .inner {
+    display: block;
+    width: 100%; }
 
 /* Header */
 #header > header {
