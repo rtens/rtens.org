@@ -1,3 +1,14 @@
+<?php
+
+$blog = simplexml_load_file('http://blog.rtens.org/feeds/all.atom.xml');
+
+$mailSent = false;
+if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['message'])) {
+    mail('contact@rtens.org', '[rtens.org] New message', $_POST['message'], "From: {$_POST['name']} <{$_POST['email']}>");
+    $mailSent = true;
+}
+
+?>
 <!DOCTYPE HTML>
 <!--
 	Read Only by HTML5 UP
@@ -68,23 +79,14 @@
                                         <a href="#about:consultant">Consultant</a>
                                     </p>
 								</header>
-								<p>Faucibus sed lobortis aliquam lorem blandit. Lorem eu nunc metus col. Commodo id in arcu ante lorem ipsum sed accumsan erat praesent faucibus commodo ac mi lacus. Adipiscing mi ac commodo. Vis aliquet tortor ultricies non ante erat nunc integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum.</p>
+								<?php include __DIR__ . '/../content/introduction.html' ?>
 							</div>
 						</section>
 						
 					<!-- Two -->
 						<section id="about">
 							<div class="container">
-
-								<h4 id="about:engineer" class="feature-icon fa-cubes">Software Engineer</h4>
-								<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer lorem ipsum dolor sit amet.</p>
-
-								<h4 id="about:coach" class="feature-icon fa-book">Coach</h4>
-								<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer lorem ipsum dolor sit amet.</p>
-
-								<h4 id="about:consultant" class="feature-icon fa-bolt">Consultant</h4>
-								<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer lorem ipsum dolor sit amet.</p>
-
+                                <?php include __DIR__ . '/../content/about.html'; ?>
 							</div>
 						</section>
 
@@ -93,45 +95,25 @@
 							<div class="container">
 								<h3>Latest Articles</h3>
 
+                                <p>In my blog, I philosophize about software, testing and my approaches to mostly technical topics.</p>
+
                                 <ul class="actions small">
-                                    <li><a href="http://blog.rtens.org" target="_blank" class="button small icon fa-angle-double-right">See all articles</a></li>
+                                    <li><a href="http://blog.rtens.org" target="_blank" class="button icon fa-angle-double-right">See all articles</a></li>
                                 </ul>
 
-								<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer. Integer eu ante ornare amet commetus.</p>
-
                                 <div class="features">
+									<?php $i=0; foreach ($blog->entry as $entry) { $i++; if ($i > 3) break; ?>
 									<article>
-                                        <a href="http://blog.rtens.org/tool-tyranny.html" target="_blank" class="image">
-                                            <h4>Tool Tyranny</h4>
-                                            <h5>2014-10-15</h5>
+                                        <a href="<?php echo $entry->link['href'] ?>" target="_blank" class="image">
+                                            <h4><?php echo $entry->title ?></h4>
+                                            <h5><?php echo date('Y-m-d', strtotime($entry->updated) + 7200); ?></h5>
                                         </a>
 										<div class="inner">
-                                            <p>So Richard McIntyre (aka <a href="https://twitter.com/mackstar">mackstar</a>) created a BDD tool named <a href="https://github.com/bbc-sport/ShouldIT/">ShouldIT</a> (<a href="https://skillsmatter.com/skillscasts/5675-should-it-a-new-approach-to-bdd-pain-not-included">video</a>) which led to a discussion between him and Konstantin Kudryashov (aka <a href="https://twitter.com/everzet">everzet</a>), mostly comparing ShouldIT to Cucumber/Behat. For example in <a href="https://gist.github.com/icambridge/7694d6d7b0a987f6c33b">this gist</a>.
-                                                <a href="http://blog.rtens.org/tool-tyranny.html" target="_blank" class="icon fa-angle-double-right">&nbsp;Continue&nbsp;reading</a>
+                                            <?php echo str_replace('<p>', '', explode('</p>', $entry->summary)[0]); ?>
+                                            <a href="<?php echo $entry->link['href'] ?>" target="_blank"><strong>&raquo; read more</strong></a>
 										</div>
 									</article>
-
-									<article>
-                                        <a href="http://blog.rtens.org/tool-tyranny.html" target="_blank" class="image">
-                                            <h4>Specification by Example</h4>
-                                            <h5>2014-09-11</h5>
-                                        </a>
-										<div class="inner">
-                                            <p>In a <a href="http://blog.rtens.org/polyamorous-tdd.html">previous post</a> I argued against a testing monoculture and suggested to mix tests with different levels of integration. Since UI tests cannot test the system completey, but unit tests are often times too fine-grained to justify their investment, staying away from these extremes is often times the best ...
-                                                <a href="http://blog.rtens.org/tool-tyranny.html" target="_blank" class="icon fa-angle-double-right">&nbsp;Continue&nbsp;reading</a>
-										</div>
-									</article>
-
-									<article>
-                                        <a href="http://blog.rtens.org/tool-tyranny.html" target="_blank" class="image">
-                                            <h4>FrOSCon 2014</h4>
-                                            <h5>2014-08-24</h5>
-                                        </a>
-										<div class="inner">
-                                            <p>I was invited at this years <a href="https://www.froscon.de">FrOSCon</a> to speak about executable documentation which is sort of follow-up to <a href="http://blog.rtens.org/froscon-2013.html">last year</a> where I spoke about <a href="http://specificationbyexample.com/">Specficiation by Example</a> (aka Behavior-Driven Development) and how to use automated tests to create a self-validating documentation of a software application. This year I approached the ...
-                                                <a href="http://blog.rtens.org/tool-tyranny.html" target="_blank" class="icon fa-angle-double-right">&nbsp;Continue&nbsp;reading</a>
-										</div>
-									</article>
+									<?php } ?>
 								</div>
 							</div>
 						</section>
@@ -139,21 +121,7 @@
                         <section id="projects">
                             <div class="container">
                                 <h3>Open Source Projects</h3>
-
-                                <p>Stuff I'm working on</p>
-
-                                <h4><a href="http://github.com/rtens/dox" target="_blank" class="icon fa-github"> dox</a></h4>
-                                <p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer. Integer eu ante ornare amet commetus.</p>
-
-                                <h4><a href="http://github.com/rtens/xkdl" target="_blank" class="icon fa-github"> xkdl</a></h4>
-                                <p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer. Integer eu ante ornare amet commetus.</p>
-
-                                <h4><a href="http://github.com/watoki" target="_blank" class="icon fa-github"> watoki</a></h4>
-                                <p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer. Integer eu ante ornare amet commetus.</p>
-
-                                <h4><a href="http://github.com/rtens/mockster" target="_blank" class="icon fa-github"> mockster</a></h4>
-                                <p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer. Integer eu ante ornare amet commetus.</p>
-
+                                <?php include __DIR__ . '/../content/projects.html'; ?>
                             </div>
                         </section>
 						
@@ -161,17 +129,16 @@
 						<section id="contact">
 							<div class="container">
 								<h3>Contact Me</h3>
-								<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer. Integer eu ante ornare amet commetus.</p>
-								<form method="post" action="#">
+                                <?php if ($mailSent) { ?>
+                                    <div class="alert alert-success">Thank you for your message. I will get back to you as soon as possible.</div>
+                                <?php } else { ?>
+								<form method="post" action="index.php#contact">
 									<div class="row uniform">
-										<div class="6u 12u(3)"><input type="text" name="name" id="name" placeholder="Name" /></div>
-										<div class="6u 12u(3)"><input type="email" name="email" id="email" placeholder="Email" /></div>
+										<div class="6u 12u(3)"><input type="text" name="name" id="name" placeholder="Name" required="required" /></div>
+										<div class="6u 12u(3)"><input type="email" name="email" id="email" placeholder="Email" required="required" /></div>
 									</div>
 									<div class="row uniform">
-										<div class="12u"><input type="text" name="subject" id="subject" placeholder="Subject" /></div>
-									</div>
-									<div class="row uniform">
-										<div class="12u"><textarea name="message" id="message" placeholder="Message" rows="6"></textarea></div>
+										<div class="12u"><textarea name="message" id="message" placeholder="Message" rows="6" required="required"></textarea></div>
 									</div>
 									<div class="row uniform">
 										<div class="12u">
@@ -182,6 +149,7 @@
 										</div>
 									</div>
 								</form>
+                                <?php } ?>
 							</div>
 						</section>
 				
