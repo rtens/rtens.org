@@ -21,7 +21,7 @@ if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['message'
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-        <link rel="icon" href="images/favico.png" type="image/png"/>
+		<link rel="icon" type="image/png" href="images/zells.png">
 		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery.scrollzer.min.js"></script>
