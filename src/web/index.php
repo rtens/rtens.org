@@ -4,7 +4,7 @@ $blog = simplexml_load_file('http://blog.rtens.org/feeds/all.atom.xml');
 
 $mailSent = false;
 $isBot = false;
-if (!empty($_POST['foo']) && strtolower($_POST['foo']) != 'no') {
+if (!empty($_POST['name']) && (empty($_POST['foo']) || strtolower($_POST['foo']) != 'no')) {
     $isBot = true;
 } else if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['message'])) {
     mail('contact@rtens.org', '[rtens.org] New message', $_POST['message'], "From: {$_POST['name']} <{$_POST['email']}>");
