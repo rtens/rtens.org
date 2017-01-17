@@ -133,7 +133,7 @@ if (!empty($_POST['name']) && (empty($_POST['foo']) || strtolower($_POST['foo'])
 							<div class="container">
 								<h3>Contact Me</h3>
                                 <?php if ($isBot) { ?>
-                                    <div class="alert alert-danger">Seems like you're a bot. <a href="/">Click here if you're human.</a></div>
+                                    <div class="alert alert-danger">Seems like you're a bot. <a href="/#contact">Click here if you're human.</a></div>
                                 <?php } else if ($mailSent) { ?>
                                     <div class="alert alert-success">Thank you for your message. I will get back to you as soon as possible.</div>
                                 <?php } else { ?>
