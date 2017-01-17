@@ -132,18 +132,19 @@ if (!empty($_POST['name']) && (empty($_POST['foo']) || strtolower($_POST['foo'])
 						<section id="contact">
 							<div class="container">
 								<h3>Contact Me</h3>
-                                <?php if ($isBot) { ?>
-                                    <div class="alert alert-danger">Seems like you're a bot. <a href="/#contact">Click here if you're human.</a></div>
-                                <?php } else if ($mailSent) { ?>
+                                <?php if ($mailSent) { ?>
                                     <div class="alert alert-success">Thank you for your message. I will get back to you as soon as possible.</div>
                                 <?php } else { ?>
+                                    <?php if ($isBot) { ?>
+                                        <div class="alert alert-danger">Seems like you're a bot.</div>
+                                    <?php } ?>
 								<form method="post" action="index.php#contact">
 									<div class="row uniform">
-										<div class="6u 12u(3)"><input type="text" name="name" id="name" placeholder="Name" required="required" /></div>
-										<div class="6u 12u(3)"><input type="email" name="email" id="email" placeholder="Email" required="required" /></div>
+										<div class="6u 12u(3)"><input type="text" name="name" id="name" placeholder="Name" required="required" value="<?php echo $_POST['name'] ?>" /></div>
+										<div class="6u 12u(3)"><input type="email" name="email" id="email" placeholder="Email" required="required" value="<?php echo $_POST['email'] ?>" /></div>
 									</div>
 									<div class="row uniform">
-										<div class="12u"><textarea name="message" id="message" placeholder="Message" rows="6" required="required"></textarea></div>
+										<div class="12u"><textarea name="message" id="message" placeholder="Message" rows="6" required="required">value="<?php echo $_POST['message'] ?>"</textarea></div>
 									</div>
 									<div class="row uniform">
 										<div class="12u">Are you a bot?<input type="text" name="foo"/></div>
