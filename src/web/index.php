@@ -133,7 +133,7 @@ if (!empty($_POST['foo']) && strtolower($_POST['foo']) != 'no') {
 							<div class="container">
 								<h3>Contact Me</h3>
                                 <?php if ($isBot) { ?>
-                                    <div class="alert alert-danger">Seems like you're a bot.</div>
+                                    <div class="alert alert-danger">Seems like you're a bot. <a href="/">Click here if you're human.</a></div>
                                 <?php } else if ($mailSent) { ?>
                                     <div class="alert alert-success">Thank you for your message. I will get back to you as soon as possible.</div>
                                 <?php } else { ?>
@@ -146,7 +146,7 @@ if (!empty($_POST['foo']) && strtolower($_POST['foo']) != 'no') {
 										<div class="12u"><textarea name="message" id="message" placeholder="Message" rows="6" required="required"></textarea></div>
 									</div>
 									<div class="row uniform">
-										<div class="12u">Are you a bot?<input type="text" name="foo" required="required"/></div>
+										<div class="12u">Are you a bot?<input type="text" name="foo"/></div>
 									</div>
 									<div class="row uniform">
 										<div class="12u">
