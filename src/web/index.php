@@ -144,7 +144,7 @@ if (!empty($_POST['name']) && (empty($_POST['foo']) || strtolower($_POST['foo'])
 										<div class="6u 12u(3)"><input type="email" name="email" id="email" placeholder="Email" required="required" value="<?php echo $_POST['email'] ?>" /></div>
 									</div>
 									<div class="row uniform">
-										<div class="12u"><textarea name="message" id="message" placeholder="Message" rows="6" required="required">value="<?php echo $_POST['message'] ?>"</textarea></div>
+										<div class="12u"><textarea name="message" id="message" placeholder="Message" rows="6" required="required"><?php echo $_POST['message'] ?></textarea></div>
 									</div>
 									<div class="row uniform">
 										<div class="12u">Are you a bot?<input type="text" name="foo"/></div>
