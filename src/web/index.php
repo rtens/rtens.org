@@ -4,7 +4,7 @@ $blog = simplexml_load_file('http://blog.rtens.org/feeds/all.atom.xml');
 
 $mailSent = false;
 $isBot = false;
-if (!empty($_POST['name']) && (empty($_POST['foo']) || strtolower($_POST['foo']) != 'no')) {
+if (!empty($_POST['name']) && (empty($_POST['foo']) || !in_array(trim(strtolower($_POST['foo'])), ['seven', '7']))) {
     $isBot = true;
 } else if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['message'])) {
     mail('contact@rtens.org', '[rtens.org] New message', $_POST['message'], "From: {$_POST['name']} <{$_POST['email']}>");
@@ -136,7 +136,7 @@ if (!empty($_POST['name']) && (empty($_POST['foo']) || strtolower($_POST['foo'])
                                     <div class="alert alert-success">Thank you for your message. I will get back to you as soon as possible.</div>
                                 <?php } else { ?>
                                     <?php if ($isBot) { ?>
-                                        <div class="alert alert-danger">Seems like you're a bot.</div>
+                                        <div style="color: red">Please answer my question.</div>
                                     <?php } ?>
 								<form method="post" action="index.php#contact">
 									<div class="row uniform">
@@ -147,7 +147,7 @@ if (!empty($_POST['name']) && (empty($_POST['foo']) || strtolower($_POST['foo'])
 										<div class="12u"><textarea name="message" id="message" placeholder="Message" rows="6" required="required"><?php echo $_POST['message'] ?></textarea></div>
 									</div>
 									<div class="row uniform">
-										<div class="12u">Are you a bot?<input type="text" name="foo"/></div>
+										<div class="12u">What is three plus four?<input type="text" name="foo"/></div>
 									</div>
 									<div class="row uniform">
 										<div class="12u">
