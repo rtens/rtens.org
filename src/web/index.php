@@ -4,10 +4,16 @@ $blog = simplexml_load_file('http://blog.rtens.org/feeds/all.atom.xml');
 
 $mailSent = false;
 $isBot = false;
-if (!empty($_POST['name']) && (empty($_POST['foo']) || !in_array(trim(strtolower($_POST['foo'])), ['seven', '7']))) {
-    $isBot = true;
-} else if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['message'])) {
-    mail('contact@rtens.org', '[rtens.org] New message', $_POST['message'], "From: {$_POST['name']} <{$_POST['email']}>");
+
+if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['message'])) {
+	
+	$subject = '[rtens.org] New message';
+	
+	if (!empty($_POST['city']) || !in_array(trim(strtolower($_POST['foo'])), ['cry', 'cried', 'i cried'])) {
+		$subject = '[BOT] ' . $subject;
+	}
+	
+    mail('contact@rtens.org', $subject, $_POST['message'] . "\n\n\nfoo: " . $_POST['foo'] . "\ncity: " . $_POST['city'], "From: {$_POST['name']} <{$_POST['email']}>");
     $mailSent = true;
 }
 
@@ -147,7 +153,10 @@ if (!empty($_POST['name']) && (empty($_POST['foo']) || !in_array(trim(strtolower
 										<div class="12u"><textarea name="message" id="message" placeholder="Message" rows="6" required="required"><?php echo $_POST['message'] ?></textarea></div>
 									</div>
 									<div class="row uniform">
-										<div class="12u">What is three plus four?<input type="text" name="foo"/></div>
+										<div class="12u">Proof you are human: when Mufasa died in Lion King, what did you do?<input type="text" name="foo"/></div>
+									</div>
+									<div class="row uniform backs">
+										<div class="12u">City <input type="text" name="city"/></div>
 									</div>
 									<div class="row uniform">
 										<div class="12u">
