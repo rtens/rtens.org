@@ -515,7 +515,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 								</section>
 
 							</div>
-						</section>
+						</section>-->
 
 				</div>
 
@@ -523,7 +523,10 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 				<section id="footer">
 					<div class="container">
 						<ul class="copyright">
-							<li>&copy; Nikolas Martens. All rights reserved.</li><li>Design based on: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+							<li>&copy; Nikolas Martens. All rights reserved.</li>
+							<li><a href="impressum.html">Impressum</a></li>
+							<li><a href="datenschutz.html">Datenschutz</a></li>
+							<li>Design based on: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
 						</ul>
 					</div>
 				</section>
