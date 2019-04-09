@@ -7,14 +7,16 @@ $isBot = false;
 
 if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['message'])) {
 	
-	$subject = '[rtens.org] New message';
-	
 	if (!empty($_POST['city']) || !in_array(trim(strtolower($_POST['foo'])), ['cry', 'cried', 'i cried'])) {
-		$subject = '[BOT] ' . $subject;
+		$isBot = true;
+	} else {
+		mail(
+			'contact@rtens.org', 
+			'[rtens.org] New message', 
+			$_POST['message'], 
+			"Reply-To: {$_POST['name']} <{$_POST['email']}>");
+		$mailSent = true;
 	}
-	
-    mail('contact@rtens.org', $subject, $_POST['message'] . "\n\n\nfoo: " . $_POST['foo'] . "\ncity: " . $_POST['city'], "From: {$_POST['name']} <{$_POST['email']}>");
-    $mailSent = true;
 }
 
 ?>
@@ -142,31 +144,32 @@ if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['message'
                                     <div class="alert alert-success">Thank you for your message. I will get back to you as soon as possible.</div>
                                 <?php } else { ?>
                                     <?php if ($isBot) { ?>
-                                        <div style="color: red">Please answer my question.</div>
+                                        <div style="color: red">Please answer my question to proof you're human.</div>
                                     <?php } ?>
-								<form method="post" action="index.php#contact">
-									<div class="row uniform">
-										<div class="6u 12u(3)"><input type="text" name="name" id="name" placeholder="Name" required="required" value="<?php echo $_POST['name'] ?>" /></div>
-										<div class="6u 12u(3)"><input type="email" name="email" id="email" placeholder="Email" required="required" value="<?php echo $_POST['email'] ?>" /></div>
-									</div>
-									<div class="row uniform">
-										<div class="12u"><textarea name="message" id="message" placeholder="Message" rows="6" required="required"><?php echo $_POST['message'] ?></textarea></div>
-									</div>
-									<div class="row uniform">
-										<div class="12u">Proof you are human: when Mufasa died in Lion King, what did you do?<input type="text" name="foo"/></div>
-									</div>
-									<div class="row uniform backs">
-										<div class="12u">City <input type="text" name="city"/></div>
-									</div>
-									<div class="row uniform">
-										<div class="12u">
-											<ul class="actions">
-												<li><input type="submit" class="special" value="Send Message" /></li>
-												<li><input type="reset" value="Reset Form" /></li>
-											</ul>
+									
+									<form method="post" action="index.php#contact">
+										<div class="row uniform">
+											<div class="6u 12u(3)"><input type="text" name="name" id="name" placeholder="Name" required="required" value="<?php echo $_POST['name'] ?>" /></div>
+											<div class="6u 12u(3)"><input type="email" name="email" id="email" placeholder="Email" required="required" value="<?php echo $_POST['email'] ?>" /></div>
 										</div>
-									</div>
-								</form>
+										<div class="row uniform">
+											<div class="12u"><textarea name="message" id="message" placeholder="Message" rows="6" required="required"><?php echo $_POST['message'] ?></textarea></div>
+										</div>
+										<div class="row uniform">
+											<div class="12u">Proof you are human: when Mufasa died in Lion King, what did you do?<input type="text" name="foo"/></div>
+										</div>
+										<div class="row uniform backs">
+											<div class="12u">City <input type="text" name="city"/></div>
+										</div>
+										<div class="row uniform">
+											<div class="12u">
+												<ul class="actions">
+													<li><input type="submit" class="special" value="Send Message" /></li>
+													<li><input type="reset" value="Reset Form" /></li>
+												</ul>
+											</div>
+										</div>
+									</form>
                                 <?php } ?>
 							</div>
 						</section>
