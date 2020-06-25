@@ -56,9 +56,10 @@ if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['message'
 						<span class="image avatar"><img src="images/avatar.jpg" alt="" /></span>
 						<h1 id="logo"><a href="/">Nikolas Martens</a></h1>
             <ul class="icons">
-                <li><a href="http://twitter.com/rtens_" target="_blank" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                <li><a href="http://github.com/rtens" target="_blank" class="icon fa-github"><span class="label">Github</span></a></li>
-                <li><a href="http://nikolasalokin.deviantart.com/" target="_blank" class="icon fa-deviantart"><span class="label">DeviantArt</span></a></li>
+                <li><a href="https://twitter.com/rtens_" target="_blank" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="https://github.com/rtens" target="_blank" class="icon fa-github"><span class="label">Github</span></a></li>
+                <li><a href="https://www.linkedin.com/in/nikolas-martens-803bb0112/" target="_blank" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                <li><a href="https://nikolasalokin.deviantart.com/" target="_blank" class="icon fa-deviantart"><span class="label">DeviantArt</span></a></li>
                 <li><a href="mailto:contact@rtens.org" target="_blank" class="icon fa-envelope"><span class="label">Email</span></a></li>
             </ul>
 					</header>
